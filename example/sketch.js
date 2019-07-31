@@ -1,6 +1,5 @@
-var xOff1 = 0;
-var xOff2 = 100000;
-
+var startX = 0;
+var inc = 0.01;
 
 function setup() {
     createCanvas(400, 400);
@@ -8,9 +7,17 @@ function setup() {
 
 function draw() {
     background(63);
-    xOff1 += 0.01;
-    xOff2 += 0.01;
-    var x = noise(xOff1) * 400;
-    var y = noise(xOff2) * 400;
-    ellipse(x, y, 40);
+    beginShape();
+    noFill();
+    stroke(255);
+    var xOff = startX;
+    for (var x = startX; x < width; x++) {
+        // point(x, random(height));
+        var y = noise(xOff) * height;
+        vertex(x, y);
+        xOff += inc ;
+    }
+    startX += inc;
+    endShape();
+    // noLoop();
 }
