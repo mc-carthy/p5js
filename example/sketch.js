@@ -1,23 +1,20 @@
-var startX = 0;
 var inc = 0.01;
 
 function setup() {
-    createCanvas(400, 400);
+    createCanvas(200, 200);
 }
 
 function draw() {
-    background(63);
-    beginShape();
-    noFill();
-    stroke(255);
-    var xOff = startX;
-    for (var x = startX; x < width; x++) {
-        // point(x, random(height));
-        var y = noise(xOff) * height;
-        vertex(x, y);
-        xOff += inc ;
+    loadPixels();
+    for (var x = 0; x < width; x++) {
+        for (var y = 0; y < height; y++) {
+            var index = (x + y * width) * 4;
+            var value = random(255);
+            pixels[index + 0] = value;
+            pixels[index + 1] = value;
+            pixels[index + 2] = value;
+            pixels[index + 3] = value;
+        }
     }
-    startX += inc;
-    endShape();
-    // noLoop();
+    updatePixels();
 }
