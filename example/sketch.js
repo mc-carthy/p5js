@@ -3,10 +3,15 @@ var inc = 0.1;
 var t = 0;
 var cols, rows;
 
+var particles = [];
+
 function setup() {
     createCanvas(600, 600);
     col = floor(width / scl);
     row  = floor(height / scl);
+    for (var i = 0; i < 100; i++) {
+        particles[i] = new Particle();
+    }
 }
 
 function draw() {
@@ -28,4 +33,9 @@ function draw() {
         yOff += inc;
     }
     t += 0.01
+
+    for (var i = 0; i <particles.length; i++) {
+        particles[i].update();
+        particles[i].show();
+    }
 }
